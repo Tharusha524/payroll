@@ -1,0 +1,516 @@
+/* =============================================================
+   assets/css/app.css
+   Panda Payroll – main stylesheet
+   Uses Bootstrap 5 as base, layered with custom tokens.
+   ============================================================= */
+
+/* --- Design tokens ----------------------------------------- */
+:root {
+    --pp-green:       #1D9E75;
+    --pp-green-dark:  #0F6E56;
+    --pp-green-light: #E1F5EE;
+    --pp-green-mid:   #9FE1CB;
+    --pp-text:        #1a2332;
+    --pp-text-muted:  #6b7280;
+    --pp-border:      #e5e7eb;
+    --pp-surface:     #f9fafb;
+    --pp-white:       #ffffff;
+    --pp-danger:      #dc2626;
+    --pp-warning:     #d97706;
+    --pp-info:        #2563eb;
+    --pp-radius:      8px;
+    --pp-radius-lg:   12px;
+    --sidebar-w:      240px;
+    --topbar-h:       60px;
+}
+
+/* --- Reset / base ------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--pp-surface);
+    color: var(--pp-text);
+    font-size: 14px;
+    margin: 0;
+}
+
+a { color: var(--pp-green); text-decoration: none; }
+a:hover { color: var(--pp-green-dark); }
+
+/* --- Layout ------------------------------------------------- */
+.app-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- Sidebar ------------------------------------------------ */
+.sidebar {
+    width: var(--sidebar-w);
+    background: var(--pp-text);
+    color: #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0;
+    height: 100vh;
+    z-index: 100;
+    overflow-y: auto;
+}
+
+.sidebar-brand {
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.sidebar-brand .brand-icon {
+    width: 36px; height: 36px;
+    background: var(--pp-green);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: #fff;
+    margin-bottom: 10px;
+}
+
+.sidebar-brand .brand-name {
+    font-size: 15px; font-weight: 600; color: #fff;
+    line-height: 1.2;
+}
+
+.sidebar-brand .brand-sub {
+    font-size: 11px; color: #94a3b8; margin-top: 2px;
+}
+
+.sidebar-nav { padding: 12px 0; flex: 1; }
+
+.nav-section-label {
+    font-size: 10px; font-weight: 600; letter-spacing: .08em;
+    color: #64748b; text-transform: uppercase;
+    padding: 12px 20px 4px;
+}
+
+.sidebar-link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 20px;
+    color: #94a3b8;
+    font-size: 13.5px;
+    transition: all .15s;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-link i { font-size: 17px; flex-shrink: 0; }
+
+.sidebar-link:hover {
+    background: rgba(255,255,255,.05);
+    color: #fff;
+}
+
+.sidebar-link.active {
+    background: rgba(29,158,117,.15);
+    color: var(--pp-green-mid);
+    border-left-color: var(--pp-green);
+}
+
+.sidebar-footer {
+    padding: 16px 20px;
+    border-top: 1px solid rgba(255,255,255,.08);
+    font-size: 12px; color: #64748b;
+}
+
+.sidebar-footer .user-name { color: #cbd5e1; font-weight: 500; }
+.sidebar-footer .user-role {
+    display: inline-block;
+    background: rgba(29,158,117,.2);
+    color: var(--pp-green-mid);
+    font-size: 10px; font-weight: 600; letter-spacing: .05em;
+    padding: 2px 7px; border-radius: 99px; margin-top: 4px;
+    text-transform: uppercase;
+}
+
+/* --- Main content area ------------------------------------- */
+.main-content {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+/* --- Top bar ----------------------------------------------- */
+.topbar {
+    height: var(--topbar-h);
+    background: var(--pp-white);
+    border-bottom: 1px solid var(--pp-border);
+    display: flex; align-items: center;
+    padding: 0 28px;
+    gap: 16px;
+    position: sticky; top: 0; z-index: 50;
+}
+
+.topbar-title {
+    font-size: 16px; font-weight: 600; flex: 1;
+    color: var(--pp-text);
+}
+
+.topbar-actions { display: flex; align-items: center; gap: 10px; }
+
+/* --- Page body --------------------------------------------- */
+.page-body {
+    padding: 28px;
+    flex: 1;
+}
+
+/* --- Cards ------------------------------------------------- */
+.card {
+    background: var(--pp-white);
+    border: 1px solid var(--pp-border);
+    border-radius: var(--pp-radius-lg);
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+
+.card-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--pp-border);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px;
+}
+
+.card-title {
+    font-size: 14px; font-weight: 600;
+    color: var(--pp-text);
+    margin: 0;
+}
+
+.card-body { padding: 20px; }
+
+/* --- Metric cards ----------------------------------------- */
+.metric-card {
+    background: var(--pp-white);
+    border: 1px solid var(--pp-border);
+    border-radius: var(--pp-radius-lg);
+    padding: 20px;
+}
+
+.metric-label {
+    font-size: 12px; color: var(--pp-text-muted);
+    font-weight: 500; margin-bottom: 6px;
+    text-transform: uppercase; letter-spacing: .04em;
+}
+
+.metric-value {
+    font-size: 26px; font-weight: 700;
+    line-height: 1; color: var(--pp-text);
+}
+
+.metric-value.green { color: var(--pp-green); }
+
+.metric-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+}
+
+.metric-icon.green  { background: var(--pp-green-light); color: var(--pp-green-dark); }
+.metric-icon.blue   { background: #dbeafe; color: #1d4ed8; }
+.metric-icon.amber  { background: #fef3c7; color: #b45309; }
+.metric-icon.coral  { background: #fee2e2; color: #b91c1c; }
+
+/* --- Tables ----------------------------------------------- */
+.table-responsive { overflow-x: auto; }
+
+.pp-table {
+    width: 100%; border-collapse: collapse;
+}
+
+.pp-table th {
+    padding: 10px 14px;
+    font-size: 11px; font-weight: 600;
+    color: var(--pp-text-muted);
+    text-transform: uppercase; letter-spacing: .05em;
+    background: var(--pp-surface);
+    border-bottom: 1px solid var(--pp-border);
+    white-space: nowrap;
+}
+
+.pp-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--pp-border);
+    vertical-align: middle;
+}
+
+.pp-table tbody tr:last-child td { border-bottom: none; }
+.pp-table tbody tr:hover td { background: #f8fffe; }
+
+.pp-table tfoot td {
+    font-weight: 600;
+    background: var(--pp-surface);
+    border-top: 2px solid var(--pp-border);
+}
+
+/* --- Timecard table --------------------------------------- */
+.timecard-table th, .timecard-table td {
+    padding: 7px 8px;
+    font-size: 12.5px;
+}
+
+.timecard-table input[type="number"],
+.timecard-table input[type="text"],
+.timecard-table select {
+    width: 100%;
+    height: 30px;
+    font-size: 12px;
+    padding: 0 6px;
+    border: 1px solid var(--pp-border);
+    border-radius: 5px;
+    background: var(--pp-white);
+    color: var(--pp-text);
+    transition: border-color .15s;
+}
+
+.timecard-table input:focus, .timecard-table select:focus {
+    outline: none;
+    border-color: var(--pp-green);
+    box-shadow: 0 0 0 3px rgba(29,158,117,.1);
+}
+
+.timecard-table .row-sunday td { background: #fce7f3; color: var(--pp-text); }
+.timecard-table .row-sunday td:first-child { border-left: 6px solid var(--pp-warning); }
+.timecard-table .row-sunday input,
+.timecard-table .row-sunday select { background: transparent; }
+.timecard-table .row-saturday td { background: var(--pp-green-mid); }
+.timecard-table .row-saturday td:first-child { border-left: 6px solid var(--pp-green-dark); }
+.timecard-table .row-saturday input,
+.timecard-table .row-saturday select { background: transparent; }
+.timecard-table .row-leave td { background: #fff7ed; color: #9ca3af; font-style: italic; }
+.timecard-table .row-off td { background: #f9fafb; color: #d1d5db; }
+.timecard-table .col-prodpay { color: var(--pp-green-dark); font-weight: 600; }
+.timecard-table .col-total { font-weight: 600; }
+
+.qty-input { width: 60px !important; text-align: center; }
+.money-input { width: 80px !important; }
+.shift-input { width: 110px !important; }
+
+/* --- Badges ----------------------------------------------- */
+.badge-work    { background: var(--pp-green-light); color: var(--pp-green-dark); }
+.badge-leave   { background: #fef3c7; color: #92400e; }
+.badge-off     { background: #f3f4f6; color: #6b7280; }
+.badge-holiday { background: #fce7f3; color: #9d174d; }
+.badge-admin   { background: #dbeafe; color: #1e40af; }
+.badge-staff   { background: var(--pp-green-light); color: var(--pp-green-dark); }
+.badge-active  { background: var(--pp-green-light); color: var(--pp-green-dark); }
+.badge-inactive{ background: #fee2e2; color: #991b1b; }
+
+/* --- Forms ------------------------------------------------ */
+.form-label {
+    font-size: 12.5px; font-weight: 500;
+    color: var(--pp-text); margin-bottom: 4px;
+}
+
+.form-control, .form-select {
+    border: 1px solid var(--pp-border);
+    border-radius: var(--pp-radius);
+    font-size: 13.5px;
+    padding: 8px 12px;
+    background: var(--pp-white);
+    color: var(--pp-text);
+    transition: border-color .15s, box-shadow .15s;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--pp-green);
+    box-shadow: 0 0 0 3px rgba(29,158,117,.12);
+    outline: none;
+}
+
+.form-section-title {
+    font-size: 13px; font-weight: 600;
+    color: var(--pp-text); margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--pp-border);
+}
+
+/* --- Buttons ---------------------------------------------- */
+.btn-pp {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 8px 16px;
+    border-radius: var(--pp-radius);
+    font-size: 13.5px; font-weight: 500;
+    cursor: pointer; border: none;
+    transition: all .15s;
+}
+
+.btn-pp-primary {
+    background: var(--pp-green);
+    color: #fff;
+}
+.btn-pp-primary:hover { background: var(--pp-green-dark); color: #fff; }
+
+.btn-pp-outline {
+    background: transparent;
+    border: 1px solid var(--pp-border);
+    color: var(--pp-text);
+}
+.btn-pp-outline:hover { background: var(--pp-surface); }
+
+.btn-pp-danger {
+    background: var(--pp-danger);
+    color: #fff;
+}
+.btn-pp-danger:hover { background: #b91c1c; }
+
+.btn-pp-sm { padding: 5px 10px; font-size: 12px; }
+
+/* --- Avatar ----------------------------------------------- */
+.emp-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--pp-green-light);
+    color: var(--pp-green-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 600;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.emp-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Employee photo upload -------------------------------- */
+.photo-upload-box {
+    width: 110px; height: 110px;
+    border: 2px dashed var(--pp-border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; overflow: hidden; position: relative;
+    background: var(--pp-surface);
+    transition: border-color .2s;
+}
+.photo-upload-box:hover { border-color: var(--pp-green); }
+.photo-upload-box img {
+    width: 100%; height: 100%; object-fit: cover; border-radius: 50%;
+}
+.photo-upload-box .overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,.35);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 22px; opacity: 0;
+    border-radius: 50%;
+    transition: opacity .2s;
+}
+.photo-upload-box:hover .overlay { opacity: 1; }
+
+/* --- Payslip print view ----------------------------------- */
+@media print {
+    @page {
+        size: landscape;
+        margin: 8mm;
+    }
+
+    html, body {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .app-wrapper { display: block !important; }
+
+    .sidebar, .topbar, .topbar-actions,
+    .btn-pp, .no-print { display: none !important; }
+    .main-content { margin-left: 0 !important; width: 100% !important; }
+    .page-body { padding: 0 !important; }
+    .payslip-print { max-width: 100%; }
+
+    .detail-sheet-wrap {
+        max-width: none !important;
+        width: 100% !important;
+        zoom: 0.78;
+    }
+
+    .table-responsive { overflow: visible !important; }
+
+    .pp-table { width: 100% !important; table-layout: fixed !important; }
+    .pp-table th, .pp-table td {
+        padding: 4px 6px !important;
+        line-height: 1.15 !important;
+    }
+    .pp-table th {
+        font-size: 8px !important;
+        white-space: normal !important;
+    }
+    .pp-table td { font-size: 8px !important; }
+    .detail-sheet-wrap .col-ot,
+    .detail-sheet-wrap .col-travel,
+    .detail-sheet-wrap .col-other,
+    .detail-sheet-wrap .col-notes {
+        display: none !important;
+    }
+
+    .detail-sheet-wrap .pp-table td.col-notes {
+        white-space: normal !important;
+        word-break: break-word !important;
+    }
+}
+
+.payslip-print {
+    max-width: 680px; margin: 0 auto;
+    background: var(--pp-white);
+    border: 1px solid var(--pp-border);
+    border-radius: var(--pp-radius-lg);
+    padding: 36px;
+}
+
+.payslip-company-name {
+    font-size: 22px; font-weight: 700;
+    color: var(--pp-green-dark);
+}
+
+.payslip-divider {
+    border: none; border-top: 2px solid var(--pp-green);
+    margin: 16px 0;
+}
+
+.payslip-row {
+    display: flex; justify-content: space-between;
+    padding: 7px 0; font-size: 13.5px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.payslip-total-row {
+    display: flex; justify-content: space-between;
+    padding: 14px 0;
+    font-size: 16px; font-weight: 700;
+    border-top: 2px solid var(--pp-green);
+    color: var(--pp-green-dark);
+}
+
+/* --- Login page ------------------------------------------- */
+.login-page {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+}
+
+.login-card {
+    background: var(--pp-white);
+    border-radius: 16px;
+    padding: 44px 40px;
+    width: 100%; max-width: 420px;
+    box-shadow: 0 25px 60px rgba(0,0,0,.3);
+}
+
+/* --- Utilities --------------------------------------------- */
+.text-green  { color: var(--pp-green); }
+.text-muted  { color: var(--pp-text-muted); }
+.text-danger { color: var(--pp-danger); }
+.fw-600      { font-weight: 600; }
+.fs-12       { font-size: 12px; }
+.fs-13       { font-size: 13px; }
+.gap-2       { gap: 8px; }
+.monospace   { font-family: 'Fira Code', monospace; }
+
+/* --- Responsive ------------------------------------------- */
+@media (max-width: 768px) {
+    .sidebar { transform: translateX(-100%); transition: transform .25s; }
+    .sidebar.open { transform: translateX(0); }
+    .main-content { margin-left: 0; }
+}
